@@ -13,10 +13,8 @@ Erklärungen unterbringen. Ein solcher Kommentar beginnt mit "{-" und endet mit
 module TutGrundlagen01 where
 -- So beginnt jede Haskelldatei. Wir starten ein neues Modul, das alle
 -- Definitionen in dieser Datei gruppiert. Unser erstes Modul heißt also
--- "TutGrundlagen". Es ist üblich, das Modul gleich wie die Datei zu nennen,
--- in der es untergebracht ist (ohne ".hs"). In diesem Fall haben wir an die
--- Datei vorne noch "01" angehängt, um die Reihenfolge der Lektionen zu
--- kennzeichnen.
+-- "TutGrundlagen01". Es ist üblich, das Modul gleich wie die Datei zu nennen,
+-- in der es untergebracht ist (ohne ".hs").
 -- Allgemein enden Dateien, die Haskell-Code enthalten, gewöhnlicherweise auf
 -- ".hs".
 
@@ -96,7 +94,7 @@ hoeckerAufEinemKamel = 2
 
 -- Nun wechseln wir wieder in das Terminal, in dem GHCi läuft
 -- Hier geben wir
--- ":l TutGrundlagen" ein, drücken dann <Enter>.
+-- ":l TutGrundlagen01" ein, drücken dann <Enter>.
 -- Jetzt sind die neuen Definitionen in GHCi verfügbar. Wir können dann z.B.
 -- "jahr + hoeckerAufEinemKamel" berechnen.
 
@@ -105,13 +103,14 @@ hoeckerAufEinemKamel = 2
 -- Haskell übernimmt bisher eigentlich nur die Aufgabe, die ihr auch in der
 -- Schule habt, wenn ihr Terme vereinfachen müsst.
 -- Unsere Definitionen können auch auf andere Definitionen zurückgreifen.
--- Dabei ist die Reihenfolge, in der die Definitionen auftauchen, egal.
+-- Dabei ist die Reihenfolge in der die Definitionen auftauchen egal.
 laenge = 3
 flaeche = laenge * laenge -- laenge²
+
 umfang = 4 * laenge
 volumen = flaeche * laenge
 
 -- Zu was wertet Haskell die Ausdrücke aus? Finde es in GHCi heraus! Hierzu
 -- wechselst du zuerst wieder ins Terminal-Fenster. Haben wir die Datei bereits
--- zuvor mit ":l TutGrundlagen" geladen, reicht es nun ":r" einzugeben um die
+-- zuvor mit ":l TutGrundlagen01" geladen, reicht es nun ":r" einzugeben um die
 -- neue Version der Datei an GHCi zu übergeben.
