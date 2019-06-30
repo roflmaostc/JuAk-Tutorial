@@ -37,7 +37,7 @@ falseGleichFalse = False == False -- True
 -- Wenn noch Zeit bleibt, solltet ihr Kleinigkeiten an der Definition
 -- verändern und voraussagen, wie sich das Ergebnis verändert.
 
--- Diese Datei könnt ihr in GHCi laden mit dem Befehl: ":l TutLogik".
+-- Diese Datei könnt ihr in GHCi laden mit dem Befehl: ":l TutLogik02".
 -- Wenn ihr etwas geändert habt, könnt ihr dann mit ":r" aktualisieren.
 
 -- Werte lassen sich auch in ihrer Größe vergleichen:
@@ -62,10 +62,10 @@ test4 = 2*3 /= 4*5
 -- ┌───────┬───────┬────────┐
 -- │   A   │   B   │ A && B │
 -- ├───────┼───────┼────────┤
--- │ False │ False │ False  │
--- │ False │ True  │ False  │ <- Ist A True und B False, so ist A && B False
--- │ True  │ False │ False  │
--- │ True  │ True  │ True   │ <- Ist A True und B True, so ist A && B True
+-- │ False │ False │        │
+-- │ False │ True  │        │ <- Ist A True und B False, so ist A && B ???
+-- │ True  │ False │        │
+-- │ True  │ True  │        │ <- Ist A True und B True, so ist A && B ???
 -- └───────┴───────┴────────┘
 und1 = True && False -- False (Zeile 3 der Tabelle)
 und2 = True && True -- True (Zeile 4)
@@ -80,10 +80,10 @@ und3 = (3/=4) && (5 > 3) -- ??? (Welche Zeile?)
 -- ┌───────┬───────┬────────┐
 -- │   A   │   B   │ A || B │
 -- ├───────┼───────┼────────┤
--- │ False │ False │ False  │
--- │ False │ True  │ True   │
--- │ True  │ False │ True   │
--- │ True  │ True  │ True   │ <- Bei "entweder oder" würde hier "False" stehen
+-- │ False │ False │        │
+-- │ False │ True  │        │
+-- │ True  │ False │        │
+-- │ True  │ True  │        │ <- Bei "entweder oder" würde hier "False" stehen
 -- └───────┴───────┴────────┘
 oder1 = True || False -- True
 oder2 = False || False -- False
@@ -106,7 +106,7 @@ nicht2 = not (3*2>1 && False) -- ???
 
 -- An dieser Stelle wird es Zeit, unsere KlaPS-Regel zu erweitern:
 -- Klammer vor "not" vor Punkt vor Strich vor Vergleich vor "&&" vor "||"
--- Kompakt: ( . * == && ||
+-- Kompakt: ( not * == && ||
 klapsTest = not False == True || 3 >= 8 -- ???
 -- Wenn wir einen Ausdruck berechnen, müssen wir zuerst die Klammern im Kopf
 -- einfügen und dann von innen nach außen auswerten:
@@ -146,7 +146,8 @@ g = undefined
 h = undefined
 i = undefined
 j = undefined
-fghij = (not f || not g || not h || not (i && j)) && (not (f || g) && h && i && j)
+fghij = (not f || not g || not h || not (i && j))
+         && (not (not f || not g) && h && i && j)
 
 -- In GHCi testen :-)
 
@@ -159,7 +160,7 @@ fghij = (not f || not g || not h || not (i && j)) && (not (f || g) && h && i && 
 -- Wie die Meldung genau zu lesen ist, damit werden wir uns bald beschäftigen.
 -- Aktuell reicht jedoch schon dieser Teil der ersten Zeile, um festzustellen
 -- wo der Fehler liegt:
--- "TutLogik.hs:132:8: error:" (Position kann abweichen)
+-- "TutLogik02.hs:158:8: error:" (Position kann abweichen)
 --  Zeile  --^  ^-- achtes Zeichen in dieser Zeile
 -- Wir halten also fest, dass es nicht möglich ist, beliebige Arten von
 -- Ausdrücken miteinander zu vergleichen.
@@ -196,7 +197,7 @@ string1 = "Ich bin ein String..."
 -- Bei Zahlen sieht die Situation schon etwas diverser aus.
 -- Es gibt verschiedene Typen, die Dezimalzahlen, ganze Zahlen, etc. darstellen.
 num1 :: Float
-num1 = 3.14159
+num1 = 3.1415926535897932384624633832795
 -- für Dezimalzahlen verwenden wir den Typ "Float" (engl. gleiten) oder "Double"
 
 num2 :: Int
