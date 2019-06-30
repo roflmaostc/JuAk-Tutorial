@@ -85,14 +85,23 @@ umfang n a = undefined
 -- y-Abschnitt "n" an der Stelle "x" berechnen.
 linear m n x = undefined
 
+-- Definiere eine Funktion "nullstelle", die die Nullstelle einer
+-- linearen Funktion berechnet
+nullstelle m n = undefined
+
+
 -- == Bonus ==
+-- Für welchen x Wert schneiden sich die Funktionen?
+-- schreibe die Funktion "schnittpunkte"
+schnittpunkte m1 n1 m2 n2 = undefined
+
 -- Schreibe eine Funktion "pyth", die aus den zwei Seitenlängen "a" und "b" eines
 -- rechtwinkligen Dreiecks die Länge der dritten Seite berechnet.
 -- Teste deine Funktion in GHCi mit Beispielen und indem du "testPyth" aufrufst!
 -- Tipp: Um die Wurzel zu ziehen bringt Haskell die Funktion "sqrt" mit.
 pyth :: Float -> Float -> Float
 pyth a b = undefined
--- Lösung: pyth a b = sqrt(a*a + b*b)
+
 
 -- Test (den Code hier müsst/könnt ihr noch nicht verstehen)
 testPyth :: IO ()
@@ -104,6 +113,8 @@ testPyth = hspec $ do
             property $ \a b -> pyth a b >= (0::Float)
         it "liefert immer Ergebnisse >= a und >=b" $ do
             property $ \a b -> pyth a b >= max a (b::Float)
+
+
 
 -- == Infixschreibweise ==
 -- Kleiner Hinweis zwischendurch:
@@ -166,7 +177,6 @@ betrag x =
     if undefined -- Test
         then undefined -- Ausdruck, falls Test klappt (True)
         else undefined -- Ausdruck, falls Test fehlschlägt (False)
--- Lösung: betrag x = if x > 0 then x else -x
 
 
 -- Test
@@ -197,31 +207,13 @@ konter gegner =
     else
         undefined -- hier fehlt noch ein weiterer Test
 
--- Lösung:
--- konter gegner =
---     if gegner == "Schere" then
---         "Stein"
---     else
---         if gegner == "Stein" then
---             "Papier"
---         else
---             "Schere"
-
 -- == Bonus ==
 -- Schreibe eine Funktion "schereSteinPapier", die zwei Zeichen als Argumente
 -- nimmt und entscheidet, welcher Spieler gewonnen hat.
 -- Es soll "Spieler 1", "Unentschieden" oder "Spieler 2" zurückgegeben werden.
 -- Tipp: Man kann die Funktion "konter" wiederverwenden (muss man aber nicht).
 schereSteinPapier s1 s2 = undefined
--- Lösung:
--- schereSteinPapier s1 s2 =
---     if s1 == s2 then
---         "Unentschieden"
---     else
---         if s1 == konter s2 then
---             "Spieler 1"
---         else
---             "Spieler 2"
+
 
 -- == Typannotationen bei Funktionen ==
 -- Zum Abschluss widmen wir uns nochmal den Typen. Wie ihr sicher gesehen habt,
