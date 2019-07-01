@@ -25,13 +25,7 @@ leeresTupel = () -- Aber 0 Werte in Klammern sind doch ein Tupel :D
 -- Es gibt genau ein leeres Tupel und zwar "()". Wir werden es eher selten
 -- benötigen.
 -- In Tupel kann man natürlich auch if-else-Konstrukte packen
-ifTupel x =
-  ( if not x
-      then 0
-      else -1
-  , if x
-      then 1
-      else 0)
+ifTupel x = (if not x then 0 else -1, if x then 1 else 0)
 
 -- Achtet darauf, dass das Komma die zwei if-then-else-Konstrukte voneinander
 -- abtrennt.
@@ -62,10 +56,7 @@ tupelPMTest = tupelPM (2, 4) "Hallo"
 -- Aber Pattern-Matching kann noch viel mehr. Es kann uns häufig "if-then-else"
 -- ersparen.
 -- Die Funktion "nicht" würden wir normal so definieren:
-nicht x =
-  if x
-    then False
-    else True
+nicht x = if x then False else True
 
 -- Mit Pattern-Matching ist das etwas schöner möglich
 nichtPM True  = False
@@ -97,6 +88,12 @@ sag 3 = "Drei!"
 sag 4 = "Vier!"
 sag 5 = "Fünf!"
 sag x = "Zahl nicht zwischen 1 und 5"
+
+-- Addiere zwei Punkte:
+-- Ein Punkt sieht z.B. so aus: (1,2) oder (2.3, 4.1)
+punktAdd = undefined -- hier fehlen die Argumente
+
+-- Ein Fach mit einer Note kann man in einem Tupel speichern
 
 -- == Rekursion ==
 -- Das zweite Konzept, das wir noch betrachten sollten, bevor wir uns den

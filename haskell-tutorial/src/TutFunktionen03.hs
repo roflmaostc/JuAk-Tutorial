@@ -119,7 +119,6 @@ testPyth = hspec $ do
         it "liefert immer Ergebnisse >= a und >=b" $ do
             property $ \a b -> pyth a b >= max a (b::Float)
 
-
 -- == Wiederholung ==
 -- Erhöhe die Eingabe um 3
 plus3 x = undefined
@@ -267,13 +266,13 @@ kleiner a b = a < b
 -- Entferne die Kommentare vor den Typannotationen und füge passende Annotationen
 -- hinzu, sodass der Code immer noch kompiliert.
 
--- annot1 :: ???
+--annot1 :: ???
 annot1 x y = 2*y + x
 
--- annot2 :: ???
+--annot2 :: ???
 annot2 = 3 == 4
 
--- annot3 :: ???
+--annot3 :: ???
 annot3 x y z = x*x + y*y + z
 
 -- annot4 :: ???
@@ -382,4 +381,3 @@ praezedenz3 = f (2 + 3)
 praezedenz4 = 2 + subtract 3 2 - 4
 -- und wie müsste man die Klammern setzen?
 -- Probiert es aus, danach könnt ihr in GHCi das Ergebnis prüfen.
-
