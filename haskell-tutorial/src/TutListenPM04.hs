@@ -1,6 +1,10 @@
 -- In unserer vierten Lektion werden wir Listen und Rekursion betrachten.
 module TutListenPM04 where
 
+import           Control.Exception (evaluate)
+import           Test.Hspec
+import           Test.QuickCheck
+
 -- == Tupel ==
 -- Bevor wir uns jedoch an Listen wagen, beginnen wir mit einem anderen Konzept:
 -- Tupel. Ein Tupel ist einfach eine Ansammlung von Werten:
@@ -115,7 +119,7 @@ tupelTausch x = undefined
 
 -- Ein Fach mit einer Note kann man in einem Tupel speichern, z.B. ("Deutsch", 3).
 -- Wenn die Note mindestens eine vier ist hat man bestanden.
--- Dann soll der Name des Fachs und "bestanden" zurückgegeben werden, ansonsten 
+-- Dann soll der Name des Fachs und "bestanden" zurückgegeben werden, ansonsten
 -- der Name und "durchgefallen". Also bei uns: "Deutsch bestanden".
 bestanden (fach, note) = undefined
 
@@ -182,6 +186,7 @@ potenz a n = undefined
 -- Die 0te Fibonacci-Zahl ist also 0, die 9te ist 34.
 -- == Aufgabe ==
 -- Wie lässt sich eine beliebige Position berechnen?
+fib :: Int -> Int
 fib 0 = undefined -- Was ist die 0te Fibonacci-Zahl?
 fib 1 = undefined -- Was ist die 1te Fibonacci-Zahl?
 fib n = undefined
@@ -335,15 +340,67 @@ fuenfterBuchstabe = welt !! 4
 drei :: Int
 drei = [1, 2, 3, 4] !! 2
 
--- == Aufgabe ==
+-- Schreibe die Funktion zugriff, die das n-te Element einer Liste zurückgibt
+zugriff :: [Int] -> Int -> Int
+zugriff l n = undefined
+
+
+-- == Bonus ==
 -- Schreibe eine Funktion, die [Int] nimmt und immer das n-te Element zurück-
 -- geben soll. Greift man auf einen Index zu, der größer ist als die
 -- Liste lang ist, so bekommt man 0 zurück.
 sichererZugriff = undefined
 
--- == Aufgabe ==
+-- == Bonus ==
 -- Schreibe eine Funktion, die zählt wie oft ein Buchstabe
 -- in einem Wort vorkommt
 -- Du kannst entweder Pattern-Matching oder !! benutzen
 bVorkommen :: [Char] -> Char -> Integer
 bVorkommen w b = undefined
+
+
+-- verdopple alle Vorkommen in einer Liste
+-- verdopple ["a", "b", "c"]  wird zu ["a", "a", "b", "b", "c", "c"]
+verdopple :: [String] -> [String]
+verdopple l = undefined
+
+
+
+-- Überprüfe, ob eine Liste ein Palindrom ist.
+-- Eine List ist genau dann ein Palindrom, wenn sie rückwärts gelesen
+-- die gleiche Liste ist
+-- [1,2,3,2,1] ist ein Palindrom
+-- [1,2,3,4,5] ist kein Palindrom
+palindrom :: [Int] -> Bool
+palindrom l = undefined
+
+
+
+
+-- Verschachtelte Listen
+-- Natürlich kann man Listen auch verschachteln
+-- [[1,2], [4,5,6,7], [5,6,8,9]]
+-- Schreibe eine Funktion, die jeweils die Länge einer solchen Liste berechnet
+-- Bsp: laengeVerschachtelterListeen  [[1,2], [4,5,6,7], [5,6,8,9]] = [2,4,4]
+laengeVerschachtelterListen :: [[Int]] -> [Int]
+laengeVerschachtelterListen l = undefined
+
+
+
+-- Duplikate
+-- Schreibe eine Funktion, die aufeinanderfolgende Duplikate
+-- in einer Liste entfernt
+-- Bsp: removeDuplicates ["a", "a", "a", "b", "c", "c", "c"] -> ["a", "b", "c"]
+removeDuplicates :: [String] -> [String]
+removeDuplicates l = undefined
+
+
+
+
+
+-- zaehlen
+-- Schreibe eine Funktion, die aufeinanderfolgende Duplikate
+-- zaehlt und als Tupel in eine Liste packt
+-- Bsp
+-- zaehlen ["a", "a", "a", "b", "c", "c", "c"] -> [("a",3), ("b",1), ("c",3)]
+zaehlen l = undefined
