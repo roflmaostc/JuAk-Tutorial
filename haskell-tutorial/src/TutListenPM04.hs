@@ -94,7 +94,6 @@ sag x = "Zahl nicht zwischen 1 und 5"
 -- Arbeite mit Pattern Matching
 punktAdd = undefined -- hier fehlen die Argumente
 
-
 -- Verschmelze zwei 2er-Tupel zu einem 4er-Tupel
 -- Annotiere die Typen
 tupelVerschmelzen t1 t2 = undefined
@@ -102,12 +101,15 @@ tupelVerschmelzen t1 t2 = undefined
 -- Tausche in einem 2er-Tupel die Positionen des ersten und zweiten Elements
 tupelTausch x = undefined
 
-
--- Ein Fach mit einer Note kann man in einem Tupel speichern
+-- Ein Fach mit einer Note kann man in einem Tupel speichern, z.B. ("Deutsch", 3).
+-- Wenn die Note mindestens eine vier ist hat man bestanden.
+-- Dann soll der Name des Fachs und "bestanden" zurückgegeben werden, ansonsten 
+-- der Name und "durchgefallen". Also bei uns: "Deutsch bestanden".
+bestanden (fach, note) = undefined
 
 -- == Rekursion ==
 -- Das zweite Konzept, das wir noch betrachten sollten, bevor wir uns den
--- Listen widmen, ist Rekursion:
+-- Listen widmen ist Rekursion:
 -- Eine Funktion, die sich selbst in ihrer Definition wieder aufruft.
 -- Das klingt vielleicht komplex, aber wir starten mit einem einfachen Beispiel:
 -- Die Fakultätsfunktion (man schreibt sie mit einem Ausrufezeichen "!"):
