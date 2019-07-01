@@ -91,7 +91,17 @@ sag x = "Zahl nicht zwischen 1 und 5"
 
 -- Addiere zwei Punkte:
 -- Ein Punkt sieht z.B. so aus: (1,2) oder (2.3, 4.1)
+-- Arbeite mit Pattern Matching
 punktAdd = undefined -- hier fehlen die Argumente
+
+
+-- Verschmelze zwei 2er-Tupel zu einem 4er-Tupel
+-- Annotiere die Typen
+tupelVerschmelzen t1 t2 = undefined
+
+-- Tausche in einem 2er-Tupel die Positionen des ersten und zweiten Elements
+tupelTausch x = undefined
+
 
 -- Ein Fach mit einer Note kann man in einem Tupel speichern
 
