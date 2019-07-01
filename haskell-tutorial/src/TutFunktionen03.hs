@@ -120,69 +120,88 @@ testPyth = hspec $ do
             property $ \a b -> pyth a b >= max a (b::Float)
 
 
+-- == Wiederholung ==
+-- Erhöhe die Eingabe um 3
+plus3 x = undefined
 
--- == Infixschreibweise ==
--- Kleiner Hinweis zwischendurch:
--- +,-,*,/ (aber auch &&, ||, etc.) sind auch einfach Funktionen.
--- Der einzige Unterschied ist, dass wir hier den Namen der Funktion (z.B. "+")
--- zwischen die Argumente und nicht davor schreiben.
--- Statt etwas in der Art "plus a b" zu verwenden, schreiben wir "a + b".
--- Statt "and x y" schreiben wir "x && y". Das soll den Code einfach schöner zu
--- lesen machen. Wir nennen diese Art, Funktionen anzuwenden die
--- "Infixschreibweise", im Kontrast dazu steht die bereits bekannte, sogenannte
--- "Präfixschreibweise" ("Prä" heißt vor, der Name der Funktion steht vor
--- den Argumenten).
--- Eine Funktion, die normal die Infixschreibweise verwendet (z.B. "+"), können
--- wir auch in Präfixschreibweise verwenden, indem wir sie in runde Klammern
--- packen: aus "1 + 2" wird "(+) 1 2". Beide liefern das gleiche Ergebnis.
--- Doch es geht auch andersrum, indem wir eine normale Funktion in Backticks
--- (`, auf der Tastatur <Shift+´>) stecken, können wir sie zwischen die
--- Argumente schreiben: aus "groesser x y" wird "x `groesser` y".
--- Ob euch das besser gefällt, müsst ihr selbst wissen.
+-- Nimm die Eingabe mal 4 und füge 5 hinzu.
+mal4Plus5 x = undefined
 
--- == Aufgabe ==
--- Wandle die Infixschreibweisen in Präfixschreibweisen um:
-in1 = 1 + 2
-prae1 = undefined
+-- Teste, ob die Eingabe "Hallo" war
+istHallo x = undefined
 
-in2 = 1 + 2 + 3 -- "+" ist linksassoziativ, zuerst sollen 1 und 2 addiert werden
-prae2 = undefined
+-- Teste, ob die Eingabe "Tschüss" oder "Bis bald" war
+istVerabschiedung x = undefined
 
-in3 = 1 - 2 + 3
-prae3 = undefined
+-- Rechne von Sekunden zu Minuten um
+sekZuMin s = undefined
 
--- Wir müssen aufpassen, wenn wir Infixschreibweise und Präfixschreibweise
--- mischen: Die Präfixschreibweise bindet ihre Argumente stärker an sich als die
--- Infixschreibweise.
--- Also ist
-praezedenz1 = f 2 + 3
--- das gleiche wie
-praezedenz2 = (f 2) + 3
--- und eben nicht
-praezedenz3 = f (2 + 3)
+-- Rechne von Sekunden zu Stunden um, verwende dabei sekZuMin
+sekZuH s = undefined
 
--- Die Funktion "subtract a b" berechnet "b - a"
--- Was ist das Ergebnis von
-praezedenz4 = 2 + subtract 3 2 - 4
--- und wie müsste man die Klammern setzen?
--- Probiert es aus, danach könnt ihr in GHCi das Ergebnis prüfen.
+-- Füge am Ende ein "!" hinzu
+ausruf x = undefined
+
+-- Teste, ob die Zahl zwischen 1 und 6 ist
+istNote x = undefined
+
+-- Teste, ob das dreifache der Zahl größer als 180 ist
+istGross x = undefined
+
+-- Sind x, y und z gleich?
+alleDrei x y z = undefined
+
+-- == Bonus ==
+-- Teste, ob die Zahl gerade ist, oder durch drei teilbar ist
+-- Hinweis: Die Funktion "mod x y" gibt den Rest beim teilen von x durch y aus.
+teilbar x = undefined
+
+-- Mitternachtsformel:
+-- Berechne eine Nullstelle von "ax² + bx + c". Falls es keine Nullstelle gibt,
+-- ist uns egal, was passiert.
+-- Hinweis: "sqrt x" berechnet die Wurzel von x
+nst a b c = undefined
+
+-- Ist der Punkt im 2. Quadranten?
+--      ↑y
+--   2. │ 1.
+-- ─────┼─────→x
+--   3. │ 4.
+--      │
+imQuadrant2 x y = undefined
+
+-- Ist die Zahl x höchstens drei von der null entfernt?
+naheNull x = undefined
+
+-- Rechne von m/s in km/h um.
+zuKmH v = undefined
 
 -- == If-then-else ==
--- Zurück zu Funktionsdefinitionen. Wir wollen nun den Betrag einer Zahl
--- berechnen. Der Betrag einer Zahl ist der Abstand zur Null (Betrag von 3 ist
+-- Zurück zu Funktionsdefinitionen. 
+-- Die meisten Funktionen sollen nicht stur etwas berechnen, sondern je
+-- nach Eingabe für verschiedene Wege einschlagen.
+
+-- Dafür gibt es das "if-then-else"-Konstrukt. So können wir z.B. eine 
+-- Begrüßung bei verdächtigen Namen norddeutsch halten, ansonsten sagen wir 
+-- einfach "Hallo".
+begruessen name =
+    if name == "Jule" || name == "Arne" then
+        "Moin!"
+    else
+        "Hallo!"
+
+-- Nächstes Beispiel, etwas mathematischer:
+-- Der Betrag einer Zahl ist der Abstand zur Null (Betrag von 3 ist
 -- 3, Betrag von -5 ist 5).
 -- Dazu müssen wir zunächst testen, ob die Zahl positiv ist oder nicht. Die
 -- nötigen Vergleiche haben wir schon in der letzten Lektion kennengelernt.
--- Um uns aufgrund des Ergebnisses eines Tests unterschiedlich zu entscheiden,
--- welchen Ausdruck wir auswerten, gibt es das if-then-else-Konstrukt.
--- Es funktioniert ganz einfach! Probier es aus, indem du alle drei "undefined"
+-- Vervollständige die Funktion, indem du alle drei "undefined"
 -- in der Definition von "betrag" ersetzt.
 betrag :: Float -> Float
 betrag x =
     if undefined -- Test
         then undefined -- Ausdruck, falls Test klappt (True)
         else undefined -- Ausdruck, falls Test fehlschlägt (False)
-
 
 -- Test
 testBetrag :: IO ()
@@ -203,8 +222,13 @@ testBetrag = hspec $ do
 brutto produkt netto = undefined
 
 -- == Aufgabe ==
+-- Wie weit sind x und y voneinander entfernt?
+-- z.B. distanz 1 2 = 1, distanz 3 (-1) = 4
+distanz x y = undefined
+
+-- == Aufgabe ==
 -- Nutze Haskell, um bei Schere-Stein-Papier zu gewinnen!
--- Die Funktion bekommt das Zeichen, das der Gegner nimmt als Argument, und
+-- Die Funktion bekommt das Zeichen des Gegners als Argument, und
 -- entscheidet dann, welches Zeichen zurückgegeben werden muss um zu gewinnen.
 konter gegner =
     if undefined then
@@ -212,14 +236,12 @@ konter gegner =
     else
         undefined -- hier fehlt noch ein weiterer Test
 
-
 -- == Bonus ==
 -- Schreibe eine Funktion "schereSteinPapier", die zwei Zeichen als Argumente
 -- nimmt und entscheidet, welcher Spieler gewonnen hat.
 -- Es soll "Spieler 1", "Unentschieden" oder "Spieler 2" zurückgegeben werden.
 -- Tipp: Man kann die Funktion "konter" wiederverwenden (muss man aber nicht).
 schereSteinPapier s1 s2 = undefined
-
 
 -- == Typannotationen bei Funktionen ==
 -- Zum Abschluss widmen wir uns nochmal den Typen. Wie ihr sicher gesehen habt,
@@ -273,44 +295,35 @@ annot8 a b c d e f =
   else if c < d then 2*f
   else 10.2
 
-
 --annot9 :: ??
 annot9 a b c = b c
 
-
-
 -- ==  Weitere Aufgaben ==
---
 -- Schreibe die Funktion "verdopple".
 -- Diese soll eine Zahl aber nur verdoppeln, sofern sie kleiner als 100 ist.
 -- verdopple 101 = 101
 -- verdopple 90 = 180
 verdopple x = undefined
 
-
--- Schreibe eine Funktion myMax, die das Maximum zweier Zahlen ausgibt
+-- Schreibe eine Funktion myMax, die die größere von zwei Zahlen zurückgibt
 -- myMax 10 2 wertet zu 10 aus
 -- Ergänze auch die Typannotationen
 myMax a b = undefined
-
 
 -- Schreibe eine Funktion myMin, die das Minimum zweier Zahlen ausgibt
 -- myMin 10 2 wertet zu 2 aus
 -- Ergänze auch die Typannotationen
 myMin a b = undefined
 
-
-
 -- == Bonus ==
-
 -- Schreibe eine Funktion istRechtwinklig, die überprüft, ob die drei Parameter
 -- a, b und c die Seitenlängen eines rechtwinkligen Dreiecks sein können. Die
 -- Parameter sind dabei ganze Zahlen.
 istRechtwinklig :: Integer -> Integer -> Integer -> Bool
 istRechtwinklig a b c = undefined
 
--- Schreibe eine Funktion "innenwinkel", die den Innenwinkel eines regelmäßigen
--- n-Ecks zurückgibt.
+-- Schreibe eine Funktion "innenwinkel", die den Innenwinkel jeder Ecke eines 
+-- regelmäßigen n-Ecks zurückgibt.
 -- Ergänze auch passende Annotationen
 innenwinkel :: undefined -> undefined
 innenwinkel n = undefined
@@ -323,3 +336,50 @@ flaecheDreieck g h = undefined
 -- Überlege dir welche Informationen man braucht, um den Flächeninhalt vollständig zu berechnen
 flaecheNeck :: undefined -> undefined -> undefined
 flaecheNeck n r = undefined
+
+-- == Infixschreibweise ==
+-- Kleiner Hinweis zwischendurch:
+-- +,-,*,/ (aber auch &&, ||, etc.) sind auch einfach Funktionen.
+-- Der einzige Unterschied ist, dass wir hier den Namen der Funktion (z.B. "+")
+-- zwischen die Argumente und nicht davor schreiben.
+-- Statt etwas in der Art "plus a b" zu verwenden, schreiben wir "a + b".
+-- Statt "and x y" schreiben wir "x && y". Das soll den Code einfach schöner zu
+-- lesen machen. Wir nennen diese Art, Funktionen anzuwenden die
+-- "Infixschreibweise", im Kontrast dazu steht die bereits bekannte, sogenannte
+-- "Präfixschreibweise" ("Prä" heißt vor, der Name der Funktion steht vor
+-- den Argumenten).
+-- Eine Funktion, die normal die Infixschreibweise verwendet (z.B. "+"), können
+-- wir auch in Präfixschreibweise verwenden, indem wir sie in runde Klammern
+-- packen: aus "1 + 2" wird "(+) 1 2". Beide liefern das gleiche Ergebnis.
+-- Doch es geht auch andersrum, indem wir eine normale Funktion in Backticks
+-- (`, auf der Tastatur <Shift+´>) stecken, können wir sie zwischen die
+-- Argumente schreiben: aus "groesser x y" wird "x `groesser` y".
+-- Ob euch das besser gefällt, müsst ihr selbst wissen.
+
+-- == Aufgabe ==
+-- Wandle die Infixschreibweisen in Präfixschreibweisen um:
+in1 = 1 + 2
+prae1 = undefined
+
+in2 = 1 + 2 + 3 -- "+" ist linksassoziativ, zuerst sollen 1 und 2 addiert werden
+prae2 = undefined
+
+in3 = 1 - 2 + 3
+prae3 = undefined
+
+-- Wir müssen aufpassen, wenn wir Infixschreibweise und Präfixschreibweise
+-- mischen: Die Präfixschreibweise bindet ihre Argumente stärker an sich als die
+-- Infixschreibweise.
+-- Also ist
+praezedenz1 = f 2 + 3
+-- das gleiche wie
+praezedenz2 = (f 2) + 3
+-- und eben nicht
+praezedenz3 = f (2 + 3)
+
+-- Die Funktion "subtract a b" berechnet "b - a"
+-- Was ist das Ergebnis von
+praezedenz4 = 2 + subtract 3 2 - 4
+-- und wie müsste man die Klammern setzen?
+-- Probiert es aus, danach könnt ihr in GHCi das Ergebnis prüfen.
+
