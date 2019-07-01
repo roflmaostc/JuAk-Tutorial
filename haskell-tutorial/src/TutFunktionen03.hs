@@ -62,6 +62,11 @@ res1 = succ 3
 -- In Haskell lassen wir wieder die Klammern weg:
 groesser x y = x > y -- nimmt zwei Zahlen als Eingabe, gibt ein Bool zurück
 res2 = groesser 3 2 -- ???
+-- res2 = groesser 3 2
+-- res2 = 3 > 2
+-- res2 = True
+
+ersterQuadrant x y = x > 0 && y > 0
 
 -- "not", das wir in der letzten Lektion kennengelernt haben, ist auch eine
 -- Funktion. "not" stand sehr weit vorne in der KlaPS-Liste, war aber nur ein
@@ -74,33 +79,33 @@ res2 = groesser 3 2 -- ???
 -- Deine Definition soll an die Stelle, an der aktuell "undefined" steht.
 -- Hinweis: Überlege dir wie viel ein Dreieck, Viereck, Fünfeck hat.
 
-winkelsumme n = undefined
+winkelsumme n = (n-2) * 180 -- n * 180 - 360
 
 -- Schreibe eine Funktion "umfang", die den Umfang eines n-Ecks mit
 -- Seitenlänge "a" berechnet:
-umfang n a = undefined
+umfang n a = n * a
 
 -- Definiere eine Funktion "linear", die drei Argumente nimmt.
 -- Sie soll den Funktionswert einer linearen Funktion mit Steigung "m" und
 -- y-Abschnitt "n" an der Stelle "x" berechnen.
-linear m n x = undefined
+linear m n x = m * x + n
 
 -- Definiere eine Funktion "nullstelle", die die Nullstelle einer
 -- linearen Funktion berechnet
-nullstelle m n = undefined
+nullstelle m n = (-n)/m
 
 
 -- == Bonus ==
 -- Für welchen x Wert schneiden sich die Funktionen?
 -- schreibe die Funktion "schnittpunkte"
-schnittpunkte m1 n1 m2 n2 = undefined
+schnittpunkte m1 n1 m2 n2 = (n2 - n1)/(m1 - m2)
 
 -- Schreibe eine Funktion "pyth", die aus den zwei Seitenlängen "a" und "b" eines
 -- rechtwinkligen Dreiecks die Länge der dritten Seite berechnet.
 -- Teste deine Funktion in GHCi mit Beispielen und indem du "testPyth" aufrufst!
 -- Tipp: Um die Wurzel zu ziehen bringt Haskell die Funktion "sqrt" mit.
 pyth :: Float -> Float -> Float
-pyth a b = undefined
+pyth a b = sqrt(a*a + b*b)
 
 
 -- Test (den Code hier müsst/könnt ihr noch nicht verstehen)
@@ -207,6 +212,7 @@ konter gegner =
     else
         undefined -- hier fehlt noch ein weiterer Test
 
+
 -- == Bonus ==
 -- Schreibe eine Funktion "schereSteinPapier", die zwei Zeichen als Argumente
 -- nimmt und entscheidet, welcher Spieler gewonnen hat.
@@ -251,6 +257,28 @@ annot3 x y z = x*x + y*y + z
 -- annot4 :: ???
 annot4 x y = if x then y+1 else y-1
 
+--annot5 :: ??
+annot5 a b c d = if a && b || ( c < d ) then c + 1 else d + 1
+
+--annot6 :: ??
+annot6 a b c d = if a && d || c then c else b < 2
+
+--annot7 :: ??
+annot7 a b c d = groesser0 b && groesser0 c || (a<d)
+
+--annot8 :: ??
+annot8 a b c d e f =
+  if a then 3.2
+  else if b < c then f+1.0
+  else if c < d then 2*f
+  else 10.2
+
+
+--annot9 :: ??
+annot9 a b c = b c
+
+
+
 -- ==  Weitere Aufgaben ==
 --
 -- Schreibe die Funktion "verdopple".
@@ -258,6 +286,22 @@ annot4 x y = if x then y+1 else y-1
 -- verdopple 101 = 101
 -- verdopple 90 = 180
 verdopple x = undefined
+
+
+-- Schreibe eine Funktion myMax, die das Maximum zweier Zahlen ausgibt
+-- myMax 10 2 wertet zu 10 aus
+-- Ergänze auch die Typannotationen
+myMax a b = undefined
+
+
+-- Schreibe eine Funktion myMin, die das Minimum zweier Zahlen ausgibt
+-- myMin 10 2 wertet zu 2 aus
+-- Ergänze auch die Typannotationen
+myMin a b = undefined
+
+
+
+-- == Bonus ==
 
 -- Schreibe eine Funktion istRechtwinklig, die überprüft, ob die drei Parameter
 -- a, b und c die Seitenlängen eines rechtwinkligen Dreiecks sein können. Die
@@ -275,7 +319,6 @@ innenwinkel n = undefined
 flaecheDreieck :: undefined -> undefined -> undefined
 flaecheDreieck g h = undefined
 
--- == Bonus ==
 -- Schreibe eine Funktion flaecheNeck, die den Flächeninhalt eines regelmäßigen N-Ecks berechnet.
 -- Überlege dir welche Informationen man braucht, um den Flächeninhalt vollständig zu berechnen
 flaecheNeck :: undefined -> undefined -> undefined
