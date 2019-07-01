@@ -38,8 +38,8 @@ tupelFun t s = s -- Diese Funktion gibt einfach immer das zweite Argument zurüc
 tupelPM :: (Int, Int) -> String -> Int
 tupelPM (x, y) s = x + y
 
-tupelPMTest = tupelPM (2, 4) "Hallo"
 
+tupelPMTest = tupelPM (2, 4) "Hallo"
 -- Wenn wir tupelPM mit dem Tupel "(2,4)" aufrufen, wird dieses mit dem Tupel
 -- "(x,y)" aus der Definition verglichen. Die Definition liefert sozusagen die
 -- Schablone oder Struktur für das Argument, die 2 passt auf das "x", die 4 auf
@@ -53,6 +53,18 @@ tupelPMTest = tupelPM (2, 4) "Hallo"
 -- tuplePM (2,4) "Hallo"
 -- 2 + 4
 -- 6
+
+
+-- Schreibe eine Funktion, die den String zurückgibt
+erstes :: (Int, String) -> String
+erstes t = undefined
+
+-- Schreibe eine Funktion, die die folgende Signatur erfüllt
+zweites :: (Int, String) -> (Bool, String)
+zweites t = undefined
+
+
+
 -- Aber Pattern-Matching kann noch viel mehr. Es kann uns häufig "if-then-else"
 -- ersparen.
 -- Die Funktion "nicht" würden wir normal so definieren:
