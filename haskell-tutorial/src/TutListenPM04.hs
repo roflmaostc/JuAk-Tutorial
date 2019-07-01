@@ -12,6 +12,10 @@ tupel1 = (1, 2.0)
 tupel2 :: (String, Int, Bool)
 tupel2 = ("Apfel", -1, True && False)
 
+
+punkt :: (Float, Float)
+punkt = (-1.1, 10)
+
 -- Ein Tupel kann Werte verschiedener Typen enthalten.
 keinTupel = ("Test") -- Ein einzelner Wert in Klammern ist noch kein Tupel.
 
@@ -322,5 +326,3 @@ sichererZugriff = undefined
 -- Du kannst entweder Pattern-Matching oder !! benutzen
 bVorkommen :: [Char] -> Char -> Integer
 bVorkommen w b = undefined
--- TODO AUfgaben?
--- TODO: Typannotationen?
