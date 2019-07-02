@@ -284,7 +284,7 @@ gleichHallo :: [String] -> Bool
 gleichHallo (x:xs) = undefined
 
 
--- Addiere die Elemente des Tupels, das in eine Liste gepackt ist,
+-- Addiere die Elemente des Tupels, das in eine Liste gepackt sind,
 -- zusammen
 -- addListTupel [(10,20)] = 30
 addListTupel :: [(Int, Int)] -> Int
