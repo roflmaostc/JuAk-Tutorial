@@ -29,7 +29,7 @@ leeresTupel = () -- Aber 0 Werte in Klammern sind doch ein Tupel :D
 -- Es gibt genau ein leeres Tupel und zwar "()". Wir werden es eher selten
 -- benötigen.
 -- In Tupel kann man natürlich auch if-else-Konstrukte packen
-ifTupel x = (if not x then 0 else -1, if x then 1 else 0)
+ifTupel x = ((if not x then 0 else -1), (if x then 1 else 0))
 
 -- Achtet darauf, dass das Komma die zwei if-then-else-Konstrukte voneinander
 -- abtrennt.
@@ -60,12 +60,12 @@ tupelPMTest = tupelPM (2, 4) "Hallo"
 
 
 -- Schreibe eine Funktion, die den String zurückgibt
-erstes :: (Int, String) -> String
-erstes t = undefined
+erstes :: (Int, String) -> Int
+erstes    ( x ,    s  )  = x
 
 -- Schreibe eine Funktion, die die folgende Signatur erfüllt
 zweites :: (Int, String) -> (Bool, String)
-zweites t = undefined
+zweites (x, s) = (x > 0 , s)
 
 
 
@@ -95,7 +95,10 @@ oderPMTest = oderPM False True
 -- == Aufgabe ==
 -- Benutze Pattern-Matching um die "und"-Funktion zu schreiben
 und :: Bool -> Bool -> Bool
-und x y = undefined
+und True True = True
+und x y = False
+
+
 
 -- Mit Pattern Matching kann man viele "spannende" Dinge anstellen:
 sag 1 = "Eins!"
@@ -103,25 +106,32 @@ sag 2 = "Zwei!"
 sag 3 = "Drei!"
 sag 4 = "Vier!"
 sag 5 = "Fünf!"
-sag x = "Zahl nicht zwischen 1 und 5"
+sag 123456 = "Einhundertdreiundzwanzigtausendvierhundertsechsundfünfzig"
+sag x = "Das ist eine doofe Zahl"
+
+
 
 -- Addiere zwei Punkte:
 -- Ein Punkt sieht z.B. so aus: (1,2) oder (2.3, 4.1)
 -- Arbeite mit Pattern Matching
-punktAdd = undefined -- hier fehlen die Argumente
+-- punkteAdd (10, 20) (-10, 20) = (0, 40)
+punktAdd (x1, y1) (x2, y2) = (x1+x2, y1+y2) -- hier fehlen die Argumente
 
 -- Verschmelze zwei 2er-Tupel zu einem 4er-Tupel
 -- Annotiere die Typen
-tupelVerschmelzen t1 t2 = undefined
+-- tupelVerschmelzen (1, 2) (3,4) = (1,2,3,4)
+tupelVerschmelzen (x, y) (a,b) = (x, y, a, b)
 
 -- Tausche in einem 2er-Tupel die Positionen des ersten und zweiten Elements
-tupelTausch x = undefined
+-- tupelTausch ("hallo" , "blub") = ("blub", "hallo")
+tupelTausch (a, b) = (b, a)
 
 -- Ein Fach mit einer Note kann man in einem Tupel speichern, z.B. ("Deutsch", 3).
 -- Wenn die Note mindestens eine vier ist hat man bestanden.
 -- Dann soll der Name des Fachs und "bestanden" zurückgegeben werden, ansonsten
 -- der Name und "durchgefallen". Also bei uns: "Deutsch bestanden".
-bestanden (fach, note) = undefined
+bestanden (fach, note) = (fach, if note >= 1 && note <= 4 then "bestanden"
+                                else "durchgefallen")
 
 -- == Rekursion ==
 -- Das zweite Konzept, das wir noch betrachten sollten, bevor wir uns den
@@ -138,7 +148,7 @@ bestanden (fach, note) = undefined
 -- n! = n*(n-1)! <- für alle n > 0.
 -- Außerdem: 0! = 1
 -- Damit ist
--- 3! = 2*1! = 2*(1*0!) = 2*0! = 2*1 = 2
+-- 2! = 2*1! = 2*(1*0!) = 2*0! = 2*1 = 2
 -- Und schon haben wir unser erstes Beispiel für Rekursion gesehen:
 -- Die Fakultätsfunktion verwendet sich selbst, um das Ergebnis zu bestimmen.
 -- Irgendwann kommt n bei null an, dann bricht die Rekursion ab.
@@ -146,6 +156,8 @@ bestanden (fach, note) = undefined
 -- In Haskell ist es sehr ähnlich:
 fak 0 = 1 -- 0! = 1
 fak n = n * fak (n - 1) -- n! = n*(n-1)!
+
+
 -- Das ist auch eine Form des Pattern-Matching:
 -- Wenn wir "fak 3" auswerten wollen, muss im Pattern "3" auf die Schablone
 -- "n+1" passen. Damit "3 = n+1" gilt, wird also "n" zu "2".
@@ -169,15 +181,15 @@ fak n = n * fak (n - 1) -- n! = n*(n-1)!
 -- Schreibe eine Funktion, die die Summe der Zahlen von 0 bis n berechnet.
 -- z.B. ist summeZahlen 4 = 10
 summeZahlen :: Integer -> Integer
-summeZahlen 0 = undefined
-summeZahlen n = undefined
+summeZahlen 0 = 0
+summeZahlen n = n + summeZahlen (n-1)
 
 -- Schreibe eine Funktion, die die aⁿ (a hoch n) berechnet.
 -- 4³ ist 4*4*4. a⁰ ist immer 1.
 -- Benutze Rekursion.
 potenz :: Integer -> Integer -> Integer
-potenz a 0 = undefined
-potenz a n = undefined
+potenz a 0 = 1
+potenz a n = a * potenz a (n-1)
 
 -- Ein weiteres bekanntes Beispiel für Rekursion ist die Fibonacci-Folge:
 -- Sie sieht so aus:
@@ -187,9 +199,9 @@ potenz a n = undefined
 -- == Aufgabe ==
 -- Wie lässt sich eine beliebige Position berechnen?
 fib :: Int -> Int
-fib 0 = undefined -- Was ist die 0te Fibonacci-Zahl?
-fib 1 = undefined -- Was ist die 1te Fibonacci-Zahl?
-fib n = undefined
+fib 0 = 0 -- Was ist die 0te Fibonacci-Zahl?
+fib 1 = 1 -- Was ist die 1te Fibonacci-Zahl?
+fib n = fib (n-1) + fib (n-2)
 
 -- Test
 testFib :: IO ()
@@ -218,6 +230,8 @@ einzelgaenger = [1]
 
 leer = []
 
+
+
 -- Eine Liste kann beliebig viele Elemente speichern, aber sie müssen alle vom
 -- gleichen Typ sein. Folgendes ist nicht möglich:
 -- mix = ["Brot", 2, True]
@@ -226,6 +240,7 @@ leer = []
 umgedreht = reverse [1, 2, 3] -- liefert [3, 2, 1]
 
 anzahl = length [5, 4, 3, 2, 1] -- liefert 5
+
 
 -- Listen sind eigentlich nicht so aufgebaut, wie sie uns Haskell anzeigt:
 -- "[]"      ist wirklich   "[]"
@@ -244,6 +259,57 @@ anzahl = length [5, 4, 3, 2, 1] -- liefert 5
 -- "1:(2:(3:[]))" = "1:(2:[3])" = "1:[2,3]" = "[1,2,3]"
 -- Eine Liste besteht also aus ihren Werten und einer Struktur aus "[]" und
 -- ":".
+
+listeMitDp = 1:2:3:4:5:[] == [1,2,3,4,5]
+
+
+-- Schreibe die Funktion istLeer, die überprüft, ob eine Liste leer ist
+istLeer :: [Int] -> Bool
+istLeer l = undefined
+
+-- Schreibe die Funktion istNichtLeer,
+-- die überprüft, ob die Liste nicht leer ist
+istNichtLeer :: [Int] -> Bool
+istNichtLeer l = undefined
+
+
+-- Schreibe die Funktion kopf, die das erste Element einer Liste
+-- zurückgibt
+-- Bsp.: kopf [1,2,3] = 1
+kopf :: [Int] -> Int
+kopf (x:xs) = undefined
+
+-- Überprüfe, ob der Kopf der Liste gleich "hallo" ist
+gleichHallo :: [String] -> Bool
+gleichHallo (x:xs) = undefined
+
+
+-- Addiere die Elemente des Tupels, das in eine Liste gepackt ist,
+-- zusammen
+-- addListTupel [(10,20)] = 30
+addListTupel :: [(Int, Int)] -> Int
+addListTupel [(x,y)] = undefined
+
+
+-- Verallgemeinere dieses Konzept auf eine Liste mit vielen Tupels
+--addListTupel2 [(10,20), (30,40)] = 10+20 +(30+40) = 100
+addListTupel2 :: [(Int, Int)] -> Int
+addListTupel2 ((x,y):xs) = undefined
+
+
+-- Schreibe die Funktion rest, die alles außer den Kopf der Liste zurückgibt
+-- Bsp.: rest [1,2,3] = [2,3]
+rest l = undefined
+
+
+-- Schreibe eine Funktion, die die ersten beiden Elemente einer Liste in
+-- ein Tupel packt
+-- tupelFun2 [1,2,3,4] = (1,2)
+tupelFun2 :: [Int] -> (Int, Int)
+tupelFun2 (a:b:c) = undefined
+
+
+
 -- Eine einfache Übung ist es, die Länge einer Liste selbst zu berechnen.
 -- Hierzu benötigen wir Pattern-Matching und Rekursion:
 laenge []     = 0 -- Die leere Liste hat die Länge 0
@@ -260,8 +326,24 @@ summeListe (x:xs) = undefined
 
 -- Aufgabe:
 -- Wie viele Einser sind in der Liste?
+-- anzahlEinser [1,1,1,3,2] = 3
 anzahlEinser []     = undefined
 anzahlEinser (x:xs) = undefined
+
+
+-- Entferne alle 1er aus der Liste
+-- entferne1er [1,2,3,2,1] = [2,3,2]
+-- Man benötigt if ... then ... else ...
+entferne1er :: [Int] -> [Int]
+entferne1er (x:xs) = undefined
+
+
+
+-- Wie viele "blub" sind in der Liste?
+-- anzahlBlub ["blub", "hallo", "hihi", "juak", "blub"] = 2
+anzahlBlub :: [String] -> Int
+anzahlBlub (x:xs) = undefined
+
 
 -- Unsere Funktionen können natürlich auch wieder Listen zurückgeben. Diese
 -- erhöht jedes Element in der Liste um eins.
