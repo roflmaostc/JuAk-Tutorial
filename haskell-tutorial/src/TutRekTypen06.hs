@@ -1,4 +1,4 @@
--- Datentypen, die sich in der Definition selbst verwenden
+-- Datentypen, die sich in ihrer Definition selbst verwenden
 module TutRekTypen06 where
 
 -- Wie lassen sich alle natürlichen Zahlen definieren?
@@ -8,17 +8,15 @@ module TutRekTypen06 where
 data Nat
   = Null -- 0 ist eine natürliche Zahl
   | Nachfolger Nat -- Für jede natürliche Zahl ist ihr Nachfolger auch eine
--- Dieses Prinzip nennt sich Rekursion:
+-- Dieses Prinzip kennt ihr schon, es nennt sich Rekursion:
 -- In der Definition von Nat kommt Nat selbst auf der rechten Seite vor.
--- "Um Rekursion zu verstehen musst du zuerst Rekursion verstehen"
 
 eins = Nachfolger Null
 zwei = Nachfolger (Nachfolger Null)
 -- oder:
 zwei' = Nachfolger eins
+drei = undefined -- ???
 
-drei = Nachfolger( Nachfolger (Null))
-drei' = Nachfolger zwei
 
 -- Ein paar simple Funktionen:
 plusEins :: Nat -> Nat
@@ -30,18 +28,20 @@ plusZwei x = undefined -- ???
 plusDrei :: Nat -> Nat
 plusDrei x = undefined -- ???
 
+
+-- Ziehe von einer natürlichen Zahl eins ab.
+-- Ist die Zahl Null, so soll Null zurückgegeben werden.
 minusEins :: Nat -> Nat
-minusEins (Nachfolger x) = x
+minusEins Null = undefined
+minusEins (Nachfolger x) = undefined 
 
 minusZwei :: Nat -> Nat
-minusZwei x = undefined
-
+minusZwei _ = undefined
 
 -- Wie addieren wir zwei beliebige Nat-Zahlen?
 plus Null Null        = undefined -- ???
 plus Null y           = undefined -- ???
 plus (Nachfolger x) y = plus x (Nachfolger y) -- wieso funktioniert das?
-
 
 add1 = plus zwei eins -- 2+1
 -- wenn wir `plus` schreiben, erlaubt uns Haskell, die Funktion zwischen die
