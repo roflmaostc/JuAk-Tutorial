@@ -5,7 +5,8 @@ module TutTypen05 where
 -- Gib das dritte Element einer Liste zurück
 -- drittes [1,2,3,4] = 4
 -- Verwende Pattern Matching
-drittes l = undefined
+drittes (a:b:c:d:xs) = d
+drittes2 l = l !! 3
 
 -- Wie viele Zahlen in der Liste sind 3er oder 4er?
 -- z.B.
@@ -13,7 +14,7 @@ drittes l = undefined
 -- dreiVier [3,2,1] ist 1
 -- dreiVier [1] ist 0
 dreiVier [] = 0
-dreiVier (x:xs) = undefined
+dreiVier (x:xs) = (if x == 3 || x == 4 then 1 else 0) + dreiVier xs
 
 -- Kommt in der Liste der Noten eine eins vor?
 -- Wenn ja, gib "True" zurück, sonst "False".
@@ -21,15 +22,20 @@ dreiVier (x:xs) = undefined
 -- musterschueler [3] ist False
 -- musterschueler [1,2,3,4,5,6] ist True
 -- musterschueler [1,1,2] ist True
-musterschueler [] = undefined
-musterschueler (note:restNoten) = undefined
+musterschuelerInnen [] = False
+musterschuelerInnen (note:restNoten) =
+  if note == 1 then True else musterschuelerInnen restNoten
+
 
 -- Verknüpfe eine Liste von Strings zu einem langen Text.
 -- Füge dazu zwischen den Strings ein Leerzeichen ein.
 -- z.B.
 -- zusammen [] ist ""
 -- zusammen ["Hallo", "ich", "bin", "Haskell"] ist "Hallo ich bin Haskell"
-zusammen l = undefined
+zusammen [] = ""
+zusammen [x] = x
+zusammen (x:xs) = x ++ " " ++ zusammen xs
+
 
 -- == Eigene Datentypen ==
 -- Wir wollen ein Kartenspiel programmieren.
@@ -54,11 +60,17 @@ zusammen l = undefined
 data Farbe = Kreuz | Pik | Herz | Karo
     deriving(Eq,Ord,Show) -- erlaubt es uns, Farben zu vergleichen
 
+data Kursteilnehmer = Lasse | Malena | Franziska | Bjarne
+   deriving (Eq, Ord, Show)
+data Kursleiter = Maximilian | Felix
+    deriving (Eq, Ord, Show)
+
 -- Den Typ "Bool" kennen wir ja schon, er ist so definiert:
--- data Bool = True | False
+-- data MyBool = True | False
 
 -- Die Kartenwerte speichern wir mit dem Typ "Wert".
-data Wert = Sieben | Acht | Neun | Bube | Dame | König | Zehn | Ass
+-- Skat-Karten!
+data Wert = Sieben | Acht | Neun | Zehn | Bube | Dame | König | Ass
     deriving(Eq,Ord,Show)
 
 -- So einfach lässt sich also ein neuer Datentyp definieren.
@@ -80,14 +92,19 @@ farbePik f = if f == Pik then True else False
 -- oder einfacher:
 farbePik2 f = f == Pik
 -- hier eine Version, die sogenanntes Pattern-Matching verwendet:
+farbePik3 :: Farbe -> Bool
 farbePik3 Pik   = True
-farbePik3 Karo  = False
-farbePik3 Kreuz = False
-farbePik3 Herz  = False
+farbePik3 _ = False
 
 -- Schreibe die Funktion farbeHerz
 -- probiere sowohl Pattern Matching als auch if ... then ... else ...
-farbeHerz _ = undefined
+farbeHerz Herz = True
+farbeHerz _ = False
+
+farbeHerz2 farbe = farbe == Herz
+
+farbeHerz3 farbe = if farbe == Herz then True else False
+
 
 -- Pattern-Matching erlaubt es uns, in Funktionsdefinitionen bereits auf der
 -- linken Seite eine Fallunterscheidung zu treffen.
@@ -119,14 +136,14 @@ deck = [karte0, karte1, karte2]
 -- farbe (Karo, Acht) ist Karo
 -- farbe (Herz, Ass) ist Herz
 farbe :: (Farbe, Wert) -> Farbe
-farbe (farbe,wert) = undefined
+farbe (farbe,wert) = farbe
 
 -- Schreibe eine Funktion, die den Wert einer Karte zurückgibt
 -- z.B.
 -- wert (Karo, Acht) ist Acht
 -- wert (Herz, Ass) ist Ass
 wert :: (Farbe, Wert) -> Wert
-wert k = undefined
+wert (farbe, wert) = wert
 
 -- Teste, ob die erste Karte im "deck" eine Sieben ist
 -- z.B.
@@ -134,7 +151,14 @@ wert k = undefined
 -- siebenOben [(Karo, Acht), (Herz, Ass)] ist False
 -- siebenOben [(Pik, Sieben)] ist True
 siebenOben :: [(Farbe, Wert)] -> Bool
-siebenOben deck = undefined
+
+siebenOben [] = False
+siebenOben ((farbe, wert):xs) =
+  if wert == Sieben then True else False
+
+siebenOben2 ((farbe, Sieben):xs) = True
+siebenOben2 _ = False
+
 
 -- Überprüfe, ob "deck" eine "Sieben" an irgend einer Stelle enthält
 -- z.B.
@@ -142,7 +166,13 @@ siebenOben deck = undefined
 -- enthaeltSieben [(Karo, Acht), (Herz, Ass)] ist False
 -- enthaeltSieben [(Karo, Acht), (Pik, Sieben)] ist True
 enthaeltSieben :: [(Farbe, Wert)] -> Bool
-enthaeltSieben deck = undefined
+enthaeltSieben [] = False
+enthaeltSieben ((f, w):restKarten) =
+  if w == Sieben then True else enthaeltSieben restKarten
+
+enthaeltSieben ((f, Sieben):restKarten) = True
+enthaeltSieben (_:restKarten) = enthaeltSieben restKarten
+
 
 -- Überprüfe, ob das "deck" ein Pik enthält.
 enthaeltPik :: [(Farbe, Wert)] -> Bool
