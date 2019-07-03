@@ -23,3 +23,7 @@ executable haskell-tutorial
                      , derive
                      , gloss
                      , generic-random
+                     , combinat
+                     , process
+                     , containers
+                     , pretty-tree

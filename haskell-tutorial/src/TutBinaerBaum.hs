@@ -1,6 +1,9 @@
 -- In dieser Lektion werden wir versuchen unser gelerntes Wissen an einem
 -- etwas größeren Beispiel anzuwenden.
 module TutBinaerBaum where
+import qualified Data.Tree.Pretty as DTP
+import qualified Data.Tree as DT hiding (Tree(Leaf,Node))
+
 -- Das Modul heißt Binärbaum, es handelt sich dabei um eine Datenstruktur, die
 -- wie eine Liste viele Elemente des gleichen Typs speichern kann.
 -- Der Binärbaum hat aber den Vorteil, dass wir an einzelne Elemente schneller
@@ -12,7 +15,10 @@ module TutBinaerBaum where
 data Tree a = Leaf | Node (Tree a) a (Tree a)
     deriving (Show)
 
-showBinTree t = asciiBinaryTree_ $ binaryTrees 4
+toDT Leaf = DT.Node "Leaf" []
+toDT (Node l x r) = DT.Node (show x) [toDT l, toDT r]
+
+showBinTree t = putStrLn $ DTP.drawVerticalTree (toDT t)
 
 -- == Aufgaben ==
 -- Schreibe die Funktion, die ein Element in den Baum einfügt
