@@ -42,15 +42,15 @@ zusammen l = undefined
 --  |  \/ A|  \/ A|  Y  A|  I  A|
 --  `------^------^------'------'
 --
--- Wir könnten die Kartenwerte natürlich als Strings speichern, jedoch 
+-- Wir könnten die Kartenwerte natürlich als Strings speichern, jedoch
 -- müssten wir uns dann Gedanken um die Bedeutung von ungültigen Strings machen.
 -- Welche Karte sollte z.B. "Pik 5" darstellen?
 --
 -- Deshalb definieren wir uns zwei neue Typen, einen für die Kartenfarben
 -- und einen für die Kartenwerte.
 
--- Die nächste Zeile definiert einen neuen Typen mit dem Namen "Farbe", der 
--- die vier Werte "Kreuz", "Pik", "Herz" oder "Karo" annehmen kann. 
+-- Die nächste Zeile definiert einen neuen Typen mit dem Namen "Farbe", der
+-- die vier Werte "Kreuz", "Pik", "Herz" oder "Karo" annehmen kann.
 data Farbe = Kreuz | Pik | Herz | Karo
     deriving(Eq,Ord,Show) -- erlaubt es uns, Farben zu vergleichen
 
@@ -133,7 +133,7 @@ wert k = undefined
 -- siebenOben [] ist False
 -- siebenOben [(Karo, Acht), (Herz, Ass)] ist False
 -- siebenOben [(Pik, Sieben)] ist True
-siebenOben [(Farbe, Wert)] -> Bool
+siebenOben :: [(Farbe, Wert)] -> Bool
 siebenOben deck = undefined
 
 -- Überprüfe, ob "deck" eine "Sieben" an irgend einer Stelle enthält
