@@ -1,5 +1,21 @@
 -- Jetzt implementieren wir unsere eigenen Typen
 module TutTypen05 where
+
+-- Wiederholung Listen
+
+-- Gib das dritte Element einer Liste zurück
+-- drittes [1,2,3,4] = 4
+-- Verwende Pattern Matching
+drittes l = undefined
+
+
+-- Verknüpfe eine Liste von Strings zu einem langen String
+-- Füge zwische den Strings ein Leerzeichen ein
+-- zusammen ["Hallo", "ich", "bin", "JuAk"] = "Hallo ich bin JuAk"
+zusammen l = undefined
+
+
+
 -- Wir wollen ein Kartenspiel programmieren.
 -- Es gibt die vier Farbwerte "Kreuz", "Pik", "Herz" und "Karo", sowie die
 -- Kartenwerte 7, 8, 9, Bube, Dame, König, 10, Ass.
@@ -101,8 +117,3 @@ besser (Karte farbe1 wert1) (Karte farbe2 wert2) =
     else if undefined then
         if farbe1 > farbe2 then True else False
     else undefined
-
-
-
-
-
