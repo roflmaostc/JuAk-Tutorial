@@ -241,7 +241,6 @@ umgedreht = reverse [1, 2, 3] -- liefert [3, 2, 1]
 
 anzahl = length [5, 4, 3, 2, 1] -- liefert 5
 
-
 -- Listen sind eigentlich nicht so aufgebaut, wie sie uns Haskell anzeigt:
 -- "[]"      ist wirklich   "[]"
 -- "[1]"     ist eigentlich "1:[]"
@@ -259,9 +258,13 @@ anzahl = length [5, 4, 3, 2, 1] -- liefert 5
 -- "1:(2:(3:[]))" = "1:(2:[3])" = "1:[2,3]" = "[1,2,3]"
 -- Eine Liste besteht also aus ihren Werten und einer Struktur aus "[]" und
 -- ":".
-
 listeMitDp = 1:2:3:4:5:[] == [1,2,3,4,5]
 
+-- Füge drei vorne an die Liste xs an
+fuegeDreiEin xs = undefined
+
+-- Hänge True und False vorne an die Liste an
+fuegeBoolsEin xs = undefined
 
 -- Schreibe die Funktion istLeer, die überprüft, ob eine Liste leer ist
 istLeer :: [Int] -> Bool
@@ -271,7 +274,6 @@ istLeer l = undefined
 -- die überprüft, ob die Liste nicht leer ist
 istNichtLeer :: [Int] -> Bool
 istNichtLeer l = undefined
-
 
 -- Schreibe die Funktion kopf, die das erste Element einer Liste
 -- zurückgibt
@@ -283,32 +285,26 @@ kopf (x:xs) = undefined
 gleichHallo :: [String] -> Bool
 gleichHallo (x:xs) = undefined
 
-
 -- Addiere die Elemente des Tupels, das in eine Liste gepackt sind,
 -- zusammen
 -- addListTupel [(10,20)] = 30
 addListTupel :: [(Int, Int)] -> Int
 addListTupel [(x,y)] = undefined
 
-
 -- Verallgemeinere dieses Konzept auf eine Liste mit vielen Tupels
 --addListTupel2 [(10,20), (30,40)] = 10+20 +(30+40) = 100
 addListTupel2 :: [(Int, Int)] -> Int
 addListTupel2 ((x,y):xs) = undefined
 
-
 -- Schreibe die Funktion rest, die alles außer den Kopf der Liste zurückgibt
 -- Bsp.: rest [1,2,3] = [2,3]
 rest l = undefined
-
 
 -- Schreibe eine Funktion, die die ersten beiden Elemente einer Liste in
 -- ein Tupel packt
 -- tupelFun2 [1,2,3,4] = (1,2)
 tupelFun2 :: [Int] -> (Int, Int)
 tupelFun2 (a:b:c) = undefined
-
-
 
 -- Eine einfache Übung ist es, die Länge einer Liste selbst zu berechnen.
 -- Hierzu benötigen wir Pattern-Matching und Rekursion:
@@ -337,13 +333,10 @@ anzahlEinser (x:xs) = undefined
 entferne1er :: [Int] -> [Int]
 entferne1er (x:xs) = undefined
 
-
-
 -- Wie viele "blub" sind in der Liste?
 -- anzahlBlub ["blub", "hallo", "hihi", "juak", "blub"] = 2
 anzahlBlub :: [String] -> Int
 anzahlBlub (x:xs) = undefined
-
 
 -- Unsere Funktionen können natürlich auch wieder Listen zurückgeben. Diese
 -- erhöht jedes Element in der Liste um eins.
@@ -426,7 +419,6 @@ drei = [1, 2, 3, 4] !! 2
 zugriff :: [Int] -> Int -> Int
 zugriff l n = undefined
 
-
 -- == Bonus ==
 -- Schreibe eine Funktion, die [Int] nimmt und immer das n-te Element zurück-
 -- geben soll. Greift man auf einen Index zu, der größer ist als die
@@ -440,49 +432,38 @@ sichererZugriff = undefined
 bVorkommen :: [Char] -> Char -> Integer
 bVorkommen w b = undefined
 
-
 -- verdopple alle Vorkommen in einer Liste
 -- verdopple ["a", "b", "c"]  wird zu ["a", "a", "b", "b", "c", "c"]
 verdopple :: [String] -> [String]
 verdopple l = undefined
 
-
-
 -- Überprüfe, ob eine Liste ein Palindrom ist.
--- Eine List ist genau dann ein Palindrom, wenn sie rückwärts gelesen
--- die gleiche Liste ist
+-- Eine Liste ist genau dann ein Palindrom, wenn sie rückwärts gelesen
+-- die gleiche Liste ist.
 -- [1,2,3,2,1] ist ein Palindrom
 -- [1,2,3,4,5] ist kein Palindrom
 palindrom :: [Int] -> Bool
 palindrom l = undefined
 
-
-
-
 -- Verschachtelte Listen
--- Natürlich kann man Listen auch verschachteln
+-- Natürlich kann man Listen auch verschachteln.
 -- [[1,2], [4,5,6,7], [5,6,8,9]]
--- Schreibe eine Funktion, die jeweils die Länge einer solchen Liste berechnet
--- Bsp: laengeVerschachtelterListeen  [[1,2], [4,5,6,7], [5,6,8,9]] = [2,4,4]
+-- Schreibe eine Funktion, die die Längen der inneren Listen berechnet.
+-- Bsp: laengeVerschachtelterListen  [[1,2], [4,5,6,7], [5,6,8,9]] -> [2,4,4]
 laengeVerschachtelterListen :: [[Int]] -> [Int]
 laengeVerschachtelterListen l = undefined
 
-
-
 -- Duplikate
--- Schreibe eine Funktion, die aufeinanderfolgende Duplikate
--- in einer Liste entfernt
--- Bsp: removeDuplicates ["a", "a", "a", "b", "c", "c", "c"] -> ["a", "b", "c"]
+-- Schreibe eine Funktion, die aufeinanderfolgende Duplikate aus einer Liste 
+-- entfernt.
+-- z.B.
+-- removeDuplicates ["a", "a", "a", "b", "c", "c", "c"] -> ["a", "b", "c"]
 removeDuplicates :: [String] -> [String]
 removeDuplicates l = undefined
 
-
-
-
-
 -- zaehlen
 -- Schreibe eine Funktion, die aufeinanderfolgende Duplikate
--- zaehlt und als Tupel in eine Liste packt
--- Bsp
+-- zählt und als Tupel in eine Liste packt.
+-- z.B.
 -- zaehlen ["a", "a", "a", "b", "c", "c", "c"] -> [("a",3), ("b",1), ("c",3)]
 zaehlen l = undefined
