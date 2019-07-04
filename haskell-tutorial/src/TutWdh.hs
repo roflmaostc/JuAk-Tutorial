@@ -29,6 +29,7 @@ summeGross _ = undefined
 wiederhole _ = undefined
 
 -- Entferne jedes zweite Element aus der Liste
+-- entferneGerade 
 entferneGerade _ = undefined
 
 -- == Bonus ==
