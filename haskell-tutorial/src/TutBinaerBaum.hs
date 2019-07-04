@@ -12,68 +12,119 @@ import qualified Data.Tree as DT hiding (Tree(Leaf,Node))
 
 -- Binärbaum
 -- Erklärungen sind nun im PDF
-data Tree a = Leaf | Node (Tree a) a (Tree a)
-    deriving (Show)
+data Tree = Leaf | Node Int Tree Tree deriving (Show, Eq)
 
+
+-- Nicht wichtig für euch :p
+--
 toDT Leaf = DT.Node "Leaf" []
-toDT (Node l x r) = DT.Node (show x) [toDT l, toDT r]
-
+toDT (Node x l r) = DT.Node (show x) [toDT l, toDT r]
 showBinTree t = putStrLn $ DTP.drawVerticalTree (toDT t)
 
+
+
+
 -- == Aufgaben ==
--- Schreibe die Funktion, die ein Element in den Baum einfügt
-einfuegen :: Tree a -> a -> Tree a
-einfuegen t x = undefined
+
+-- Schreibe eine Funktion, die die Wurzel zurückgibt
+wurzel :: Tree -> Int
+wurzel t = undefined
+
+-- Schreibe eine Funktion, die das linke Kind der Wurzel zurückgibt
+linkesKind :: Tree -> Int
+linkesKind t = undefined
+
+-- Schreibe eine Funktion, die das rechte Kind der Wurzel zurückgibt
+rechtesKind :: Tree -> Int
+rechtesKind t = undefined
+
+
+-- Schreibe eine Funktion, die das linkeste Kind zurückgibt
+-- ALso das Kind, das ganz links steht
+linkestesKind :: Tree -> Int
+linkestesKind t = undefined
+
+-- Schreibe eine Funktion, die überprüft, ob eine 3 im Baum ist
+dreiImBaum :: Tree -> Bool
+dreiImBaum t = undefined
+
+
+-- Schreibe eine Funktion, die überprüft, ob eine 3 oder 4 im Baum ist
+dreiOderVierImBaum :: Tree -> Bool
+dreiOderVierImBaum t = undefined
 
 
 -- Schreibe eine Funktion, die den kleinsten Schlüssel eines Binärbaums ausgibt
-min :: Tree a -> a
+min :: Tree -> Int
 min t = undefined
 
 
 -- Schreibe eine Funktion, die den größten Schlüssel eines Binärbaums ausgibt
-max :: Tree a -> a
+max :: Tree -> Int
 max t = undefined
 
 
+-- Schreibe die Funktion, die ein Element in den Baum einfügt
+einfuegen :: Tree -> Int -> Tree
+einfuegen t x = undefined
+
+
 -- Schreibe eine Funktion, die alle Elemente als Liste sortiert zurückgibt.
-elemente :: Tree a -> [a]
+elemente :: Tree -> [a]
 elemente t = undefined
+
+
+-- == Bonus, schwer ==
+-- Schreibe eine Funktion, die ein Element aus dem Baum löscht
+loeschen :: Tree -> Int -> Tree
+loeschen t elem = undefined
+
 
 
 
 -- Nun bearbeiten wir den Key-Value-Binärbaum.
 -- Definiere den Datentyp mit dem PDF
-data Kvtree a b = Kvtree
+data TreeKV = LeafKV | NodeKV (Int,String) TreeKV TreeKV deriving (Show, Eq)
 
 -- == Aufgaben ==
 
 
--- Schreibe eine Funktion, die den Wert zu einem Schlüssen ausgibt
-get :: Kvtree a b -> a -> b
+-- Schreib eine Funktion, die den ersten key eines key-value-Binärbaums zurückgibt
+ersterKey :: TreeKV -> Int
+ersterKey t = undefined
+
+
+-- Schreibe eine Funktiion, die den ersten Value eines key-value-Binärbaums zurückgibt
+ersterValue :: TreeKV -> String
+ersterValue t = undefined
+
+
+
+-- Schreibe eine Funktion, die den Wert zu einem Schlüssel ausgibt
+get :: TreeKV -> Int -> String
 get t k = undefined
 
 
 -- Definiere die Funktion, die ein Schlüssel-Werte-Paar in einen Baum einfügt
-einfuegenkv :: Kvtree a b -> a -> b -> Kvtree a b
+einfuegenkv :: TreeKV -> Int -> String -> TreeKV 
 einfuegenkv t k v = undefined
 
 
 -- Programmiere die Funktion, die einen Schlüssel aus dem Baum entfernt
-loeschen :: Kvtree a b -> a -> Kvtree a b
-loeschen t k = undefined
+loeschenKV :: TreeKV -> Int -> TreeKV 
+loeschenKV t k = undefined
 
 
 -- Schreibe eine Funktion, die alle Schlüssel als Liste zurückgibt.
-schluessel :: Kvtree a b -> [a]
+schluessel :: TreeKV -> [Int]
 schluessel t = undefined
 
 -- Schreibe eine Funktion, die alle Werte als Liste zurückgibt.
-werte :: Kvtree a b -> [b]
+werte :: TreeKV -> [String]
 werte t = undefined
 
 
 -- Definiere eine Funktion, die alle Werte auf einen neuen Wert abbildet.
--- Der Parameter für die neue Abbildung ist die map-Funktion (b -> c)
-treeMap :: Kvtree a b -> (b -> c) -> Kvtree a c
+-- Der Parameter für die neue Abbildung ist die map-Funktion (String -> String)
+treeMap :: TreeKV -> (String -> String) -> TreeKV 
 treeMap t f = undefined

@@ -17,6 +17,7 @@ zwei = Nachfolger (Nachfolger Null)
 zwei' = Nachfolger eins
 drei = undefined -- ???
 
+
 -- Ein paar simple Funktionen:
 plusEins :: Nat -> Nat
 plusEins x = Nachfolger x
@@ -26,6 +27,7 @@ plusZwei x = undefined -- ???
 
 plusDrei :: Nat -> Nat
 plusDrei x = undefined -- ???
+
 
 -- Ziehe von einer natürlichen Zahl eins ab.
 -- Ist die Zahl Null, so soll Null zurückgegeben werden.
@@ -65,6 +67,7 @@ add2 = zwei `plus` eins -- ebenfalls 2+1
 -- Dazu eine Aufgabe:
 -- Die folgende funktion tut nicht das, was man erwartet. Wieso? Wie kann man
 -- das Problem beheben?
+
 istNull n    = False
 istNull Null = True
 
@@ -85,7 +88,8 @@ zuInt n = undefined
 -- Die andere Richtung, wenn die Zahl kleiner 0 ist, wollen wir Null erhalten
 vonInt :: Integer -> Nat
 vonInt x = undefined -- if-then-else erscheint hier angebracht
--- TODO: Tests
+
+
 
 -- == Bonus ==
 -- == Aufgabe ==
@@ -107,17 +111,45 @@ minus a b = undefined
 teile :: Nat -> Nat -> Nat
 teile a b = undefined
 
+
+-- Die Funktion "rest" gibt für den Ausdruck "rest a b" den Rest
+-- der Division a/b zurück
+rest :: Nat -> Nat -> Nat
+rest a b = undefined
+
+
+restUndTeile :: Nat -> Nat -> (Nat, Nat)
+restUndTeile a b = undefined
+
+
 -- == Aufgabe ==
 -- Finde heraus, ob eine Zahl gerade ist oder nicht:
 gerade Null                        = undefined
-gerade (Nachfolger Null)           = undefined
-gerade (Nachfolger (Nachfolger n)) = undefined
+gerade x = undefined
 -- Die vorgegebenen Patterns sollten dir einen Hinweis auf das Vorgehen geben.
+
 
 -- == Aufgabe ==
 -- Finde heraus, ob eine Zahl ungerade ist oder nicht.
 -- Dieses Mal musst du selbst die richtigen Patterns finden...
 ungerade n = undefined
+
+
+
+-- == Bonus ==
+-- Überprüfe, ob in dieser Liste [Nat] eine Zahl 3 ist
+enthaelt3 :: [Nat] -> Bool
+enthaelt3 x = undefined
+
+
+-- Lösche alle 3er aus der Liste
+loesche3 :: [Nat] -> [Nat]
+loesche3 x = undefined
+
+-- Lösche alle Zahlen die gleich n sind
+loescheN :: [Nat] -> Nat -> [Nat]
+loescheN x n = undefined
+
 
 -- == Aufgabe ==
 -- Definiere "first" (engl. erstes) und "second" (engl. zweites).
