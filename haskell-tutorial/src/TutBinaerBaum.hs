@@ -76,8 +76,8 @@ elemente t = undefined
 
 -- == Bonus, schwer ==
 -- Schreibe eine Funktion, die ein Element aus dem Baum löscht
-loesche :: Tree -> Int -> Tree
-loesche t elem = undefined
+loeschen :: Tree -> Int -> Tree
+loeschen t elem = undefined
 
 
 
@@ -100,31 +100,31 @@ ersterValue t = undefined
 
 
 
--- Schreibe eine Funktion, die den Wert zu einem Schlüssen ausgibt
-get :: TreeKV -> a -> b
+-- Schreibe eine Funktion, die den Wert zu einem Schlüssel ausgibt
+get :: TreeKV -> Int -> String
 get t k = undefined
 
 
 -- Definiere die Funktion, die ein Schlüssel-Werte-Paar in einen Baum einfügt
-einfuegenkv :: TreeKV -> a -> b -> TreeKV 
+einfuegenkv :: TreeKV -> Int -> String -> TreeKV 
 einfuegenkv t k v = undefined
 
 
 -- Programmiere die Funktion, die einen Schlüssel aus dem Baum entfernt
-loeschen :: TreeKV -> a -> TreeKV 
-loeschen t k = undefined
+loeschenKV :: TreeKV -> Int -> TreeKV 
+loeschenKV t k = undefined
 
 
 -- Schreibe eine Funktion, die alle Schlüssel als Liste zurückgibt.
-schluessel :: TreeKV -> [a]
+schluessel :: TreeKV -> [Int]
 schluessel t = undefined
 
 -- Schreibe eine Funktion, die alle Werte als Liste zurückgibt.
-werte :: TreeKV -> [b]
+werte :: TreeKV -> [String]
 werte t = undefined
 
 
 -- Definiere eine Funktion, die alle Werte auf einen neuen Wert abbildet.
--- Der Parameter für die neue Abbildung ist die map-Funktion (b -> c)
-treeMap :: TreeKV -> (b -> c) -> TreeKV 
+-- Der Parameter für die neue Abbildung ist die map-Funktion (String -> String)
+treeMap :: TreeKV -> (String -> String) -> TreeKV 
 treeMap t f = undefined
