@@ -1,5 +1,13 @@
 module TutRecords11 where
 
+data Wert = Sieben | Acht | Neun | Zehn | Bube | Dame | König | Ass
+      deriving(Eq,Ord,Show)
+
+data Farbe = Kreuz | Pik | Herz | Karo
+          deriving(Eq,Ord,Show)
+
+data KartenTyp = Karte Farbe Wert
+              deriving(Eq, Show)
 -- Wir können einen Hund mit seinen Merkmalen als Tupel speichern:
 bello = ("Bello", 7.5, 0.83, "braun", "Bernhardiner")
 
@@ -46,17 +54,17 @@ data Spieler = S1 | S2
 
 data Kartenspiel = Kartenspiel {
     turn :: Spieler,
-    deck1 :: [Karte],
-    deck2 :: [Karte],
-    ziehStapel :: [Karte],
-    ablageStapel :: [Karte]
+    deck1 :: [KartenTyp],
+    deck2 :: [KartenTyp],
+    ziehStapel :: [KartenTyp],
+    ablageStapel :: [KartenTyp]
 }
 
 spiel = Kartenspiel {
     turn = S1,
-    deck1 = [Karte Pik Ass, Karte Herz Sieben, Karte Karo Acht]
-    deck2 = [Karte Karo Bube, Karte Kreuz Neun, Karte Pik Dame]
-    ziehStapel = [Karte Pik Neun, Karte Kreuz Dame, Karte Herz Zehn]
+    deck1 = [Karte Pik Ass, Karte Herz Sieben, Karte Karo Acht],
+    deck2 = [Karte Karo Bube, Karte Kreuz Neun, Karte Pik Dame],
+    ziehStapel = [Karte Pik Neun, Karte Kreuz Dame, Karte Herz Zehn],
     ablageStapel = []
 }
 
@@ -115,7 +123,7 @@ halloHund h = undefined
 -- in der Funktionsdefinition direkt Pattern-Matching auf Elemente des
 -- Records machen.
 -- Alle Elemente, die wir nicht erwähnen sind beliebig:
-uebergewicht (Hund { geschlecht = Maennlich, geschlecht = g }) = 
+uebergewicht (Hund { geschlecht = Maennlich, gewicht = g }) =
     if g > 10 then True else False
 uebergewicht h = gewicht h > 8
 
@@ -140,5 +148,3 @@ uebergewicht' h =
 --   <Pattern 2> -> <Ausdruck 2>
 --   ...
 --   <Pattern n> -> <Ausdruck n>
-
-
